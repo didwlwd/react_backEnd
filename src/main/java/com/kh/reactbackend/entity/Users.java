@@ -72,7 +72,7 @@ public class Users {
     public void prePersist(){
         this.enrollDate = LocalDateTime.now();
         this.modifyDate = LocalDateTime.now();
-        this.thumbnail = "";
+        this.thumbnail = null;
         if(this.status == null){
             this.status = CommonEnums.Status.Y;
         }

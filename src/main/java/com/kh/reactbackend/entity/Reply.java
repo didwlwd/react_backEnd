@@ -18,7 +18,7 @@ public class Reply {
     @Column
     private Long ReplyId;
 
-    @Column
+    @Column(name = "REPLY_CONTENT")
     private String replyContent;
 
     @Column(name = "CREATE_DATE")
