@@ -16,7 +16,7 @@ public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long ReplyId;
+    private Long replyId;
 
     @Column(name = "REPLY_CONTENT")
     private String replyContent;
@@ -41,6 +41,20 @@ public class Reply {
         this.createDate = LocalDateTime.now();
         if(this.status == null){
             this.status = CommonEnums.Status.Y;
+        }
+    }
+
+    public void changeUsers(Users user){
+        this.user = user;
+        if(!user.getReplies().contains(this)){
+            user.getReplies().add(this);
+        }
+    }
+
+    public void changeBoard(Board board){
+        this.board = board;
+        if(!board.getReplies().contains(this)){
+            board.getReplies().add(this);
         }
     }
 }

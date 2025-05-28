@@ -1,11 +1,13 @@
 package com.kh.reactbackend.dto;
 
 import com.kh.reactbackend.entity.Board;
+import com.kh.reactbackend.entity.Reply;
 import com.kh.reactbackend.enums.CommonEnums;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BoardDto {
 
@@ -26,6 +28,7 @@ public class BoardDto {
         }
     }
 
+
     @Getter
     @NoArgsConstructor
     @Setter
@@ -44,7 +47,6 @@ public class BoardDto {
 
         private String user_thumbnail;
         private String user_nikname;
-        private List<String> replies;
 
         public static Response toDto(Board board){
             return Response.builder()

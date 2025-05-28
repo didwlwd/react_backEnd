@@ -2,7 +2,6 @@ package com.kh.reactbackend.controller;
 
 import com.kh.reactbackend.dto.BoardDto;
 import com.kh.reactbackend.dto.PageResponse;
-import com.kh.reactbackend.entity.Board;
 import com.kh.reactbackend.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -10,8 +9,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,6 +28,12 @@ public class BoardController {
             Pageable pageable
     ) {
         return ResponseEntity.ok(new PageResponse<>(boardService.getBoardList(pageable)));
+    }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BoardDto.Response> getBoard(@PathVariable Long id){
+        return ResponseEntity.ok(boardService.getBoardById(id));
     }
 
 }

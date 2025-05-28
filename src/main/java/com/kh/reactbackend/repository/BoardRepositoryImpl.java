@@ -1,6 +1,7 @@
 package com.kh.reactbackend.repository;
 
 import com.kh.reactbackend.entity.Board;
+import com.kh.reactbackend.entity.Reply;
 import com.kh.reactbackend.enums.CommonEnums;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class BoardRepositoryImpl implements BoardRepository {
@@ -39,4 +41,11 @@ public class BoardRepositoryImpl implements BoardRepository {
 
         return new PageImpl<>(boards, pageable, boardCount);
     }
+
+    @Override
+    public Optional<Board> findByBoardNo(Long boardNo) {
+        return Optional.ofNullable(em.find(Board.class, boardNo));
+    }
+
+
 }

@@ -64,6 +64,7 @@ public class Board {
         this.modifyDate = LocalDateTime.now();
         this.views = 0L;
         this.likes = 0L;
+        this.thumbnail = null;
         if(this.status == null){
             this.status = CommonEnums.Status.Y;
         }
@@ -76,4 +77,5 @@ public class Board {
             user.getBoards().add(this);
         }
     }
+
 }

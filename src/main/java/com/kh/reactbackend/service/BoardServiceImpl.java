@@ -1,8 +1,8 @@
 package com.kh.reactbackend.service;
 
 import com.kh.reactbackend.dto.BoardDto;
-import com.kh.reactbackend.dto.PageResponse;
 import com.kh.reactbackend.entity.Board;
+import com.kh.reactbackend.entity.Reply;
 import com.kh.reactbackend.entity.Users;
 import com.kh.reactbackend.enums.CommonEnums;
 import com.kh.reactbackend.repository.BoardRepository;
@@ -35,5 +35,13 @@ public class BoardServiceImpl implements BoardService {
     public Page<BoardDto.Response> getBoardList(Pageable pageable) {
         Page<Board> page =  boardRepository.findByStatus(CommonEnums.Status.Y, pageable);
         return page.map(BoardDto.Response::toDto);
+    }
+
+    @Override
+    public BoardDto.Response getBoardById(Long id) {
+        Board board = boardRepository.findByBoardNo(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시판입니다."));
+
+        return BoardDto.Response.toDto(board);
     }
 }
